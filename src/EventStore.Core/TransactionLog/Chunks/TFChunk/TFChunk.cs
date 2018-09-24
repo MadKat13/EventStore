@@ -980,6 +980,10 @@ namespace EventStore.Core.TransactionLog.Chunks.TFChunk
                 CleanUpFileStreamDestruction();
         }
 
+        public void TryCleanUpFileStream(){
+            Helper.EatException(() => CleanUpWriterWorkItem(_writerWorkItem));
+        }
+
         private void CleanUpFileStreamDestruction()
         {
             CleanUpWriterWorkItem(_writerWorkItem);
